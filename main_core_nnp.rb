@@ -7,11 +7,15 @@ require_relative './lib/nnp_node'
 core_node = CoreNNPNode.new("Core1")
 nnp_node = NNPNode.new("NNPNode1")
 
-# Регистрируем узел NNP
-core_node.register_nnp_node(nnp_node)
+# Параметры нейросети (пример)
+neural_network_params = {
+  weights: [0.5, 0.3, -0.2],
+  architecture: "CNN",
+  learning_rate: 0.001
+}
 
-# Устанавливаем соединение с узлом NNP
-core_node.connect_to_nnp_node(nnp_node)
+# Регистрируем узел NNP и получаем хеш
+neural_network_hash = core_node.register_nnp_node(nnp_node, neural_network_params)
 
-# Отключаем соединение с узлом NNP
-core_node.disconnect_from_nnp_node(nnp_node)
+# Выводим хеш
+puts "Хеш нейросети: #{neural_network_hash}"
